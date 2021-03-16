@@ -2,18 +2,21 @@
 using UnityEngine;
 using Facebook.Unity;
 using UnityEngine.UI;
+using TMPro;
 
 public class FaceBookUtils: MonoBehaviour
 {
-    public Text FriendsText;
+    public TextMeshProUGUI FriendsText;
     public bool isLoggedIn;
     private string shareLink = "https://bilson4321.github.io/kitti_game/";
     private string shareTitle = "This is kitti game post";
     private string shareDescription = "This is test post";
     private string shareImage = "http://i.imgur.com/j4M7vCO.jpg";
 
+
     private void Awake()
     {
+        FriendsText = GetComponent<TextMeshProUGUI>();
         if (!FB.IsInitialized)
         {
             // Initialize the Facebook SDK
@@ -71,14 +74,16 @@ public class FaceBookUtils: MonoBehaviour
     #region Login / Logout
     public void FacebookLogin()
     {
-        var permissions = new List<string>() { "public_profile", "email", "user_friends" };
+        var permissions = new List<string>() { "public_profile", "email", };
         FB.LogInWithReadPermissions(permissions, AuthCallback);
     }
 
     private void AuthCallback(ILoginResult result)
     {
+        FriendsText.text = result.RawResult.ToString();
         if (FB.IsLoggedIn)
         {
+
             // AccessToken class will have session details
             var aToken = Facebook.Unity.AccessToken.CurrentAccessToken;
             // Print current access token's User ID
@@ -91,7 +96,7 @@ public class FaceBookUtils: MonoBehaviour
         }
         else
         {
-            Debug.Log("User cancelled login");
+            FriendsText.text = "Login cancelled by user";
         }
     }
 
