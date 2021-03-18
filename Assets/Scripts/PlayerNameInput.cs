@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// ui to enter name
 public class PlayerNameInput : MonoBehaviour
 {
     [Header("UI")]

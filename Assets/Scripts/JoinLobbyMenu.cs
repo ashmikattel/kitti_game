@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 
 /// <summary>
-/// Page for when try and connect to lobby
+/// Page for when try and connect to IP
 /// </summary>
 public class JoinLobbyMenu : MonoBehaviour
 {

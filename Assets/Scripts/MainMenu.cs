@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     {
         networkManager.StartHost();
 
+        //TODO Panel to load scene
         landingPagePanel.SetActive(false);
     }
 }
