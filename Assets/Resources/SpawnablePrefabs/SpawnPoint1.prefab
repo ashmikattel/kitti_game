@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6860158060381270039}
-  - component: {fileID: 6860158060381270037}
-  - component: {fileID: 6860158060381270036}
+  - component: {fileID: 4177090135313154516}
+  - component: {fileID: 884551025440080144}
   m_Layer: 5
   m_Name: SpawnPoint1
   m_TagString: Untagged
@@ -37,7 +37,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6860158060381270037
+--- !u!114 &4177090135313154516
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,10 +46,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6860158060381270038}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41f84591ce72545258ea98cb7518d8b9, type: 3}
+  m_Script: {fileID: 11500000, guid: b3431a74cb992a5448b898a8e771fcea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6860158060381270036
+--- !u!114 &884551025440080144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

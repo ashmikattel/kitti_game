@@ -31,6 +31,7 @@ public class NetworkRoomPlayerLobby : NetworkBehaviour
         {
             isLeader = value;
             startGameButton.gameObject.SetActive(value);
+            startGameButton.interactable = false;
         }
     }
 
