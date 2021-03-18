@@ -10,7 +10,7 @@ public class FaceBookUtils: MonoBehaviour
     private string shareLink = "https://bilson4321.github.io/kitti_game/";
     private string shareTitle = "This is kitti game post";
     private string shareDescription = "This is test post";
-    private string shareImage = "http://i.imgur.com/j4M7vCO.jpg";
+    private string shareImage = "https://www.lftechnology.com/wp-content/themes/Froggy/img/logo_leapfrog.svg";
 
     private void Awake()
     {
@@ -117,7 +117,7 @@ public void FacebookShare()
 #region Inviting
 public void FacebookGameRequest()
 {
-    FB.AppRequest("Hey! Come and play this awesome game!", title: "Reso Coder Tutorial");
+    FB.AppRequest("Hey! Come and play this awesome game!", title: "kitti fire");
 }
 
     #endregion
