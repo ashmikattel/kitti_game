@@ -13,15 +13,16 @@ namespace kitti
 
         Vector3 positionToReturnTo;
 
+        private AudioSource cardSwapSound;
 
         private void Awake()
         {
             rectTransform = GetComponent<RectTransform>();
             canvasGroup = GetComponent<CanvasGroup>();
+            cardSwapSound = GetComponent<AudioSource>();
         }
         public void OnBeginDrag(PointerEventData eventData)
         {
-            Debug.Log("Drag started");
             parentToReturnTo = this.transform.parent;
             positionToReturnTo = this.transform.position;
 
@@ -30,6 +31,7 @@ namespace kitti
             rectTransform.SetParent(null);
             canvasGroup.blocksRaycasts = false;
             this.gameObject.GetComponent<RectTransform>().transform.position += new Vector3(0,0,-1.4f);
+            cardSwapSound.Play();
             LeanTween.scale(this.gameObject,new Vector3(1.5f,1.5f,1.5f),0.6f).setEase(LeanTweenType.easeSpring);
         }
 

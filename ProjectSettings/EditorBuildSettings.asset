@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WiningScreen.unity
     guid: 450258729d14776448b43ddaef54bdcb
+  - enabled: 1
+    path: Assets/Scenes/GameLobby.unity
+    guid: 49b8bf002922d524fb93dd26a95fd518
+  - enabled: 1
+    path: Assets/Scenes/OnlineGameScene.unity
+    guid: c88e10c25f7c21b4d95905609f702cc1
   m_configObjects: {}
