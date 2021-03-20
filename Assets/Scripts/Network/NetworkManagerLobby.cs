@@ -147,12 +147,12 @@ public class NetworkManagerLobby : NetworkManager
             for (int i = RoomPlayers.Count - 1; i >= 0; i--)
             {
             Debug.Log("Going to Start Gmae");
-                var conn = RoomPlayers[i].connectionToClient;
+               /* var conn = RoomPlayers[i].connectionToClient;
                 var gameplayerInstance = Instantiate(gamePlayerPrefab);
                 gameplayerInstance.SetDisplayName(RoomPlayers[i].DisplayName);
 
                 //NetworkServer.Destroy(conn.identity.gameObject);
-                NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject);
+                NetworkServer.ReplacePlayerForConnection(conn, gameplayerInstance.gameObject);*/
             }
         }
         base.ServerChangeScene(newSceneName);
@@ -163,8 +163,8 @@ public class NetworkManagerLobby : NetworkManager
         if (sceneName.StartsWith("OnlineGameScene"))
         {
             // all client have spawn system owned by the server
-            GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
-            NetworkServer.Spawn(playerSpawnSystemInstance);
+            /*GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
+            NetworkServer.Spawn(playerSpawnSystemInstance);*/
         }
     }
 
