@@ -47,7 +47,7 @@ namespace kitti
         public void OnClickinvitationButton(
             )
         {
-            Application.OpenURL("mailto:?subject=Invitation to play kitti game&body=Hey! Come and play this awesome game! https://bilson4321.github.io/kitti_game/");
+            Application.OpenURL("mailto:?subject=Invitation to play kitti game&body=Hey! Come and play this awesome game! https://bilson4321.github.io/kitti_game/ ");
         }
 
         // Update is called once per frame
