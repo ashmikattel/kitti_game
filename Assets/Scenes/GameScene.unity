@@ -729,6 +729,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 806217d5084e40c4d90676de5f548ad3, type: 3}
   noOfPlayer: 2
   participants: []
+  participantsCoin: 0000000000000000
+  participantsCoinTm:
+  - {fileID: 837491173}
+  - {fileID: 1294813419}
+  tableCoin: 0
   canvas: {fileID: 506089514}
   placeholderPrefab: {fileID: 6391022629411095666, guid: 8cef552b3425404498928f805aabda8c,
     type: 3}
@@ -2017,8 +2022,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.3363037, y: 51.600006}
-  m_SizeDelta: {x: -12.672607, y: 172.93408}
+  m_AnchoredPosition: {x: -6.3363, y: 26.2}
+  m_SizeDelta: {x: -12.672607, y: 122.06824}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1564339866
 MonoBehaviour:

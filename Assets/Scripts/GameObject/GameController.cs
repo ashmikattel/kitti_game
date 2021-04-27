@@ -21,6 +21,7 @@ namespace kitti
 
         public List<GameObject> participants;
         public List<int> participantsCoin;
+        public List<GameObject> participantsCoinTm;
         public int tableCoin = 0;
         public Canvas canvas;
 
@@ -68,7 +69,9 @@ namespace kitti
                 participant.GetComponentInChildren<NameManager>().SetName("Player " + (i + 1));
                 RectTransform placeholderRect = participant.GetComponent<RectTransform>();
                 placeholderRect.localPosition = playersPosition[i];
-                participantsCoin[i] = 100;
+                participantsCoin.Add (100);
+               // participantsCoinTm[i].GetComponent<TextMeshPro>().text = ""+ participantsCoin[i];
+
                 participants.Add(participant);
             }
         }
