@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using TMPro;
 
 namespace kitti
 {
@@ -19,7 +20,8 @@ namespace kitti
         public int noOfPlayer = 2;
 
         public List<GameObject> participants;
-
+        public List<int> participantsCoin;
+        public int tableCoin = 0;
         public Canvas canvas;
 
         public GameObject placeholderPrefab;
@@ -58,6 +60,7 @@ namespace kitti
 
         public void SetParticipants()
         {
+            tableCoin = 0;
             for (int i = 0; i < noOfPlayer; i++)
             {
                 GameObject participant = Instantiate(placeholderPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity, canvas.transform);
@@ -65,16 +68,22 @@ namespace kitti
                 participant.GetComponentInChildren<NameManager>().SetName("Player " + (i + 1));
                 RectTransform placeholderRect = participant.GetComponent<RectTransform>();
                 placeholderRect.localPosition = playersPosition[i];
-
+                participantsCoin[i] = 100;
                 participants.Add(participant);
             }
         }
-
+         
         public void PlayCards()
         {
+            tableCoin += 10 * participants.Count;
+            for(int i = 0; i< participantsCoin.Count; i++)
+            {
+                participantsCoin[i] -= 10;
+            }
             deck = GenerateDeck();
             Shuffle(deck);
             StartCoroutine(Deal());
+
         }
 
         public static List<CardModel> GenerateDeck()
@@ -175,17 +184,28 @@ namespace kitti
                 if(roundWinner[1]=="Player 1")
                 {
                     Debug.Log("Yeah winner");
+                    int index = participants.FindIndex(item => item.name == "Player 1");
+                    participantsCoin[index] += tableCoin;
+                    tableCoin = 0;
                     sceneLoader.LoadScene(4);
                 }
                 else
                 {
+                    int index = participants.FindIndex(item => item.name == "Player 2");
+                    participantsCoin[index] += tableCoin;
+                    tableCoin = 0;
                     Debug.Log("Lose");
                     sceneLoader.LoadScene(3);
                 }
             } else
             {
                 Debug.Log("Kitty by" + roundWinner[2]);
-                sceneLoader.LoadNextScene();
+                tableCoin += 10 * participants.Count;
+                for (int i = 0; i < participantsCoin.Count; i++)
+                {
+                    participantsCoin[i] -= 10;
+                }
+                PlayCards();
             }
         }
     }
