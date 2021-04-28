@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using TMPro;
 
 namespace kitti
 {
@@ -19,7 +20,9 @@ namespace kitti
         public int noOfPlayer = 2;
 
         public List<GameObject> participants;
-
+      //  public List<int> participantsCoin;
+        public List<GameObject> participantsCoinTm;
+        public int tableCoin = 0;
         public Canvas canvas;
 
         public GameObject placeholderPrefab;
@@ -58,6 +61,11 @@ namespace kitti
 
         public void SetParticipants()
         {
+            tableCoin = 0;
+         
+            if (ScoreController.Instance.participateCoin == null)
+                ScoreController.Instance.participateCoin = new List<int>();
+
             for (int i = 0; i < noOfPlayer; i++)
             {
                 GameObject participant = Instantiate(placeholderPrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity, canvas.transform);
@@ -65,16 +73,29 @@ namespace kitti
                 participant.GetComponentInChildren<NameManager>().SetName("Player " + (i + 1));
                 RectTransform placeholderRect = participant.GetComponent<RectTransform>();
                 placeholderRect.localPosition = playersPosition[i];
+                ScoreController.Instance.participateCoin.Add (100);
+
+                Debug.Log(ScoreController.Instance.participateCoin[0]);
+               // participantsCoinTm[i].GetComponent<TextMeshPro>().text = ""+ participantsCoin[i];
 
                 participants.Add(participant);
             }
+            UpdateCoin();
         }
-
+       
         public void PlayCards()
         {
+            roundWinner = new List<string>();
+            tableCoin += 10 * participants.Count;
+            for(int i = 0; i< ScoreController.Instance.participateCoin.Count; i++)
+            {
+                ScoreController.Instance.participateCoin[i] -= 10;
+            }
+            UpdateCoin();
             deck = GenerateDeck();
             Shuffle(deck);
             StartCoroutine(Deal());
+
         }
 
         public static List<CardModel> GenerateDeck()
@@ -134,7 +155,7 @@ namespace kitti
 
         public void OnShowButtonClicked()
         {
-            GameObject.Find("Button").SetActive(false);
+          //GameObject.Find("Button").SetActive(false);
             participants[0].GetComponent<PlayerController>().CloseDeck();
             StartCoroutine(ShowCard());
         }
@@ -175,18 +196,35 @@ namespace kitti
                 if(roundWinner[1]=="Player 1")
                 {
                     Debug.Log("Yeah winner");
+                    int index = participants.FindIndex(item => item.name == "Player 1");
+                    ScoreController.Instance.participateCoin[index] += tableCoin;
+                    tableCoin = 0;
                     sceneLoader.LoadScene(4);
                 }
                 else
                 {
+                    int index = participants.FindIndex(item => item.name == "Player 2");
+                    ScoreController.Instance.participateCoin[index] += tableCoin;
+                    tableCoin = 0;
                     Debug.Log("Lose");
                     sceneLoader.LoadScene(3);
                 }
             } else
             {
                 Debug.Log("Kitty by" + roundWinner[2]);
-                sceneLoader.LoadNextScene();
+               
+                PlayCards();
             }
+                tableCoin += 10 * participants.Count;
+            Debug.Log("kitty coin" + ScoreController.Instance.participateCoin[0]);
+            UpdateCoin();
+        }
+
+        public void UpdateCoin()
+        {
+            GameObject.Find("Score").GetComponent<TextMeshProUGUI>().text = ScoreController.Instance.participateCoin[0].ToString();
+            GameObject.Find("Score_Opp").GetComponent<TextMeshProUGUI>().text = ScoreController.Instance.participateCoin[1].ToString();
+
         }
     }
 }
