@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreController : MonoBehaviour
+public sealed class ScoreController 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    private ScoreController() { 
     }
+    private static ScoreController instance = null;
+    public List<int> participateCoin;
+   
 
-    // Update is called once per frame
-    void Update()
+    public static ScoreController Instance
     {
-        
+        get
+        {
+            if (instance == null)
+            {
+                instance = new ScoreController();
+            }
+            return instance;
+        }
     }
 }
